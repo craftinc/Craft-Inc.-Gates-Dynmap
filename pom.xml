@@ -87,9 +87,9 @@
         <dependency>
             <groupId>de.craftinc</groupId>
             <artifactId>CraftIncGates</artifactId>
-            <version>2.3</version>
+            <version>2.4-DEV</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/Craft Inc. Gates 2.3.0.jar</systemPath>
+            <systemPath>${project.basedir}/Craft Inc. Gates 2.4.0-DEV.jar</systemPath>
         </dependency>
 
     </dependencies>
