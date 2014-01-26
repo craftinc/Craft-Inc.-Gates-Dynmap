@@ -1,0 +1,34 @@
+# Eclipse stuff
+/.classpath
+/.project
+/.settings
+
+# netbeans
+/nbproject
+
+# intelliJ
+.idea/
+*.iml
+
+# maven
+target/
+
+# vim
+.*.sw[a-p]
+
+# various other potential build files
+/build
+/bin/
+/dist
+/localexport.jardesc
+
+# osx noise
+.DS_Store
+profile
+
+# bukkit
+bukkit/
+
+# bukkit test-server
+bukkit-testserver/
+dependency-reduced-pom.xml
