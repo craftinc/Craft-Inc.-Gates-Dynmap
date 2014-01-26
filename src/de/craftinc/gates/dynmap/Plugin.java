@@ -93,17 +93,21 @@ public class Plugin extends JavaPlugin
 
     private void loadIcons()
     {
-        InputStream inputStream = this.getClass().getResourceAsStream("/gate.png");
-
-        if (inputStream == null) {
-            log(Level.SEVERE, "Cannot load gate icon (missing resource)");
-            return;
-        }
-
-        this.gateIcon = this.markerAPI.createMarkerIcon(markerIconID, markerIconLabel, inputStream);
+        this.gateIcon = this.markerAPI.getMarkerIcon(markerSetID);
 
         if (this.gateIcon == null) {
-            log(Level.SEVERE, "Cannot load gate icon");
+            InputStream inputStream = this.getClass().getResourceAsStream("/gate.png");
+
+            if (inputStream == null) {
+                log(Level.SEVERE, "Cannot load gate icon (missing resource)");
+                return;
+            }
+
+            this.gateIcon = this.markerAPI.createMarkerIcon(markerIconID, markerIconLabel, inputStream);
+
+            if (this.gateIcon == null) {
+                log(Level.SEVERE, "Cannot load gate icon");
+            }
         }
     }
 
@@ -124,6 +128,11 @@ public class Plugin extends JavaPlugin
         List<Gate> allGates = this.gatesPlugin.getGatesManager().allGates();
 
         for (Gate g : allGates) {
+
+            if (g.getLocation() == null) {
+                continue;
+            }
+
             String id = g.getId();
             String label = g.getId();
             boolean markup = false;
