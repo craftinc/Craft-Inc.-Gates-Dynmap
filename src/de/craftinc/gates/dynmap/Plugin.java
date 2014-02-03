@@ -114,7 +114,7 @@ public class Plugin extends JavaPlugin implements GateChangeListener
 
 
     @Override
-    public void gateChangedHandler(Gate gate, Map<String, Object> stringObjectMap)
+    public void gateChangedHandler(final Gate gate, final Map<String, Object> stringObjectMap)
     {
         String oldID = (String)stringObjectMap.get(GateChangeListener.changedID);
         this.markerUtil.updateMarker(gate, oldID);

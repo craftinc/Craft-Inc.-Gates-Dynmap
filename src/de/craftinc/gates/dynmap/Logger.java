@@ -22,13 +22,13 @@ import java.util.logging.Level;
 
 public class Logger
 {
-    public static void log(String msg)
+    public static void log(final String msg)
     {
         log(Level.INFO, msg);
     }
 
 
-    public static void log(Level level, String msg)
+    public static void log(final Level level, final String msg)
     {
         java.util.logging.Logger.getLogger("Minecraft").log(level, "["+Plugin.getPlugin().getDescription().getFullName()+"] "+msg);
     }

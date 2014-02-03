@@ -54,7 +54,7 @@ public class GateMarkerUtil
         this.gateIcon = this.markerAPI.getMarkerIcon(markerIconID);
 
         if (this.gateIcon == null) {
-            InputStream inputStream = this.getClass().getResourceAsStream("/gate.png");
+            final InputStream inputStream = this.getClass().getResourceAsStream("/gate.png");
 
             if (inputStream == null) {
                 Logger.log(Level.SEVERE, "Cannot load gate icon (missing resource)");
@@ -81,7 +81,7 @@ public class GateMarkerUtil
     }
 
 
-    protected String getGateHTMLDescription(Gate gate)
+    protected String getGateHTMLDescription(final Gate gate)
     {
         final String gateId = "<div class=\"infowindow\"><h2>";
         final String open = "</h2><p>This gate is <span style=\"font-weight:bold;\">";
@@ -121,23 +121,23 @@ public class GateMarkerUtil
         return infoString;
     }
 
-    public void addMarker(Gate gate)
+    public void addMarker(final Gate gate)
     {
         if (gate.getLocation() == null) {
             return;
         }
 
-        String id = gate.getId();
-        String label = gate.getId();
-        Location l = gate.getLocation();
-        MarkerIcon icon = this.gateIcon;
+        final String id = gate.getId();
+        final String label = gate.getId();
+        final Location l = gate.getLocation();
+        final MarkerIcon icon = this.gateIcon;
 
         final Marker marker = this.markerSet.createMarker(id, label, false, l.getWorld().getName(), l.getX(), l.getY(), l.getZ(), icon, false);
         marker.setDescription(this.getGateHTMLDescription(gate));
     }
 
 
-    public void updateMarker(Gate gate, String oldID)
+    public void updateMarker(final Gate gate, final String oldID)
     {
         Marker m = this.markerSet.findMarker(gate.getId());
 
@@ -153,16 +153,16 @@ public class GateMarkerUtil
            this.removeMarker(gate);
         }
         else {
-            Location l = gate.getLocation();
+            final Location l = gate.getLocation();
             m.setLocation(l.getWorld().getName(), l.getX(), l.getY(), l.getZ());
             m.setDescription(this.getGateHTMLDescription(gate));
         }
     }
 
 
-    public void removeMarker(Gate gate)
+    public void removeMarker(final Gate gate)
     {
-        Marker m = this.markerSet.findMarker(gate.getId());
+        final Marker m = this.markerSet.findMarker(gate.getId());
         m.deleteMarker();
     }
 }
