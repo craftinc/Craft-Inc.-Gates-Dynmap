@@ -16,6 +16,7 @@
 */
 package de.craftinc.gates.dynmap;
 
+import static org.apache.commons.lang.StringEscapeUtils.escapeHtml;
 import de.craftinc.gates.Gate;
 import org.bukkit.Location;
 import org.dynmap.markers.Marker;
@@ -80,6 +81,46 @@ public class GateMarkerUtil
     }
 
 
+    protected String getGateHTMLDescription(Gate gate)
+    {
+        final String gateId = "<div class=\"infowindow\"><h2>";
+        final String open = "</h2><p>This gate is <span style=\"font-weight:bold;\">";
+        final String hidden = "</span> and <span style=\"font-weight:bold;\">hidden</span>";
+        final String preExitLink = "<br/><a href=\"";
+        final String afterExitLink = "\">Go to exit</a>";
+        final String end = "</p></div>";
+
+        String infoString = gateId + escapeHtml(gate.getId()) + open;
+
+        if (gate.isOpen()) {
+            infoString += "open";
+        }
+        else {
+            infoString = "closed";
+        }
+
+        if (gate.isHidden()) {
+            infoString += hidden;
+        }
+
+        if (gate.getExit() != null) {
+            Location exit = gate.getExit();
+
+            infoString += preExitLink;
+
+            infoString += "/?worldname=" + escapeHtml(exit.getWorld().getName());
+            infoString += "&zoom=10&x=" + exit.getX();
+            infoString += "&y=" + exit.getY();
+            infoString += "&z=" + exit.getZ();
+
+            infoString += afterExitLink;
+        }
+
+        infoString += end;
+
+        return infoString;
+    }
+
     public void addMarker(Gate gate)
     {
         if (gate.getLocation() == null) {
@@ -91,7 +132,8 @@ public class GateMarkerUtil
         Location l = gate.getLocation();
         MarkerIcon icon = this.gateIcon;
 
-        this.markerSet.createMarker(id, label, false, l.getWorld().getName(), l.getX(), l.getY(), l.getZ(), icon, false);
+        final Marker marker = this.markerSet.createMarker(id, label, false, l.getWorld().getName(), l.getX(), l.getY(), l.getZ(), icon, false);
+        marker.setDescription(this.getGateHTMLDescription(gate));
     }
 
 
@@ -113,6 +155,7 @@ public class GateMarkerUtil
         else {
             Location l = gate.getLocation();
             m.setLocation(l.getWorld().getName(), l.getX(), l.getY(), l.getZ());
+            m.setDescription(this.getGateHTMLDescription(gate));
         }
     }
 
