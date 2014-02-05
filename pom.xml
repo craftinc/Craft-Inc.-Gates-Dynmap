@@ -5,9 +5,9 @@
     <groupId>de.craftinc</groupId>
     <artifactId>CraftIncGates-Dynmap</artifactId>
     <name>Craft Inc. Gates Dynmap</name>
-    <url>FIX-ME</url>
+    <url>http://dev.bukkit.org/bukkit-plugins/craftinc-gates/</url>
     <packaging>jar</packaging>
-    <version>0.0.1</version>
+    <version>2.4.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
