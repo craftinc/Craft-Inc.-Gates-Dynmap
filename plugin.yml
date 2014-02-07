@@ -1,8 +1,8 @@
 name: ${project.name}
 version: ${project.version}
 description: A plugin to create gates for fast traveling.
-depend: [Craft Inc. Gates, dynmap]
+softdepend: [Craft Inc. Gates, dynmap]
 author: tomco
-website: FIXME
+website: http://dev.bukkit.org/bukkit-plugins/craftinc-gates/
 main: de.craftinc.gates.dynmap.Plugin
 database: false

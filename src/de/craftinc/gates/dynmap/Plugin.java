@@ -57,6 +57,7 @@ public class Plugin extends JavaPlugin implements GateChangeListener
         super.onEnable();
 
         if (!loadAPI()) {
+            Logger.log(Level.SEVERE, "Error while enabling! Stopping now!");
             return;
         }
 
@@ -69,7 +70,10 @@ public class Plugin extends JavaPlugin implements GateChangeListener
     @Override
     public void onDisable()
     {
-        this.gatesPlugin.getGatesManager().removeGateChangeListener(this);
+        if (this.gatesPlugin != null) {
+            this.gatesPlugin.getGatesManager().removeGateChangeListener(this);
+        }
+
         super.onDisable();
     }
 
